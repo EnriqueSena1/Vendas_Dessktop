@@ -12,7 +12,7 @@ class Application:
         self.sair["text"] = "Clique aqui"
         self.sair["font"] = ("Calibri", "9")
         self.sair["width"] = 10
-        self.sair.bind("<Button-1>", self.mudarTexto)
+        self.sair["command"] = self.mudarTexto
         self.sair.pack ()
 
     def mudarTexto(self, event):
