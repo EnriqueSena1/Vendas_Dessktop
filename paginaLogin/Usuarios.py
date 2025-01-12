@@ -69,7 +69,7 @@ class Usuarios(object):
         banco = Banco()
         try:
 
-            c = banco.conexao.cursor()
+            c = banco.conexao.cursor() # feito de uma forma simplificada para não ficar dando erro !
 
             c.execute("select * from usuarios where idusuario = " + idusuario + "  ")
 
