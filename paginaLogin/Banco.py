@@ -1,5 +1,6 @@
 # Pagina criada para realizar a importação do banco 
-import sqlite3
+
+import sqlite3 
 
 class Banco():
 
