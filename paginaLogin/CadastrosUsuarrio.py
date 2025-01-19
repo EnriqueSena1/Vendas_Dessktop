@@ -1,6 +1,6 @@
 # compiei do site os conteiner,
 # com cada espaço na tela que vai ser mostradado
-from Usuarios import Usuarios
+from paginaLogin.importbanco import Usuarios
 from tkinter import *
 
 class Application:

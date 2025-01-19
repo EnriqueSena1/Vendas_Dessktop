@@ -19,3 +19,5 @@ class Banco():
                     senha text)""")
         self.conexao.commit()
         c.close()
+
+        
