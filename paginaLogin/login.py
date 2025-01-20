@@ -2,6 +2,7 @@
 from tkinter import *
 from tkinter import ttk, messagebox
 from Banco import Database  # Importa a classe Database do arquivo de backend
+import tkinter as tk;
 db = Database()
 
 class Application:
@@ -158,6 +159,9 @@ def abrir_cadastro_venda():
             messagebox.showinfo("Sucesso", f"{quantidade} unidade(s) de {produto_selecionado} adicionadas à venda!")  # Confirmação
 
     tk.Button(root, text="Adicionar Produto", command=adicionar_produto).pack(pady=10)  # Botão para adicionar o produto à venda
+    
+    
+
 
     def salvar_venda():
         nome_cliente = nome_cliente_entry.get()  # Obtém o nome do cliente
@@ -175,6 +179,8 @@ def abrir_cadastro_venda():
             messagebox.showerror("Erro", "Erro ao cadastrar venda!")  # Erro no cadastro
 
     tk.Button(root, text="Salvar Venda", command=salvar_venda).pack(pady=10)  # Botão para salvar a venda
+
+    tk.Button(root, text="Sair", command=abrir_home).pack(pady=10)  # Botão para voltar a pagina inicial
 
 # Tela de Vendas Realizadas
 def abrir_vendas_realizadas():
@@ -201,6 +207,7 @@ def abrir_vendas_realizadas():
 
     # Botão para voltar à tela inicial
     tk.Button(root, text="Voltar ao Início", command=abrir_home).pack(pady=10)
+    
 
 # Inicialização do aplicativo
 root = tk.Tk()
