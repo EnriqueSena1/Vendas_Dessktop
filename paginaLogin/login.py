@@ -1,6 +1,7 @@
 
 from tkinter import *
 from tkinter import ttk, messagebox
+from PIL import Image, ImageTk
 from Banco import Database  # Importa a classe Database do arquivo de backend
 import tkinter as tk;
 db = Database()
@@ -83,6 +84,18 @@ def fazer_login():
 def abrir_login():
     for widget in root.winfo_children():  # Limpa todos os widgets da tela atual
         widget.destroy()
+
+    bg_image = Image.open("img.png.jpg")
+
+    bg_image = bg_image.resize((root.winfo_screnwidth(), root. winfo_screenheight())) 
+
+    bg_photo = ImageTk.PhotoImage(bg_image)
+
+    bg_label = tk.Label(root, image=bg_photo)
+
+    bg_label.image = bg_photo
+
+    bg_label.place(relx=0, rely=0, relwidth=1, relheight=1)
 
     tk.Label(root, text="Email:").pack(pady=5)  # Label para o campo de email
     global email_entry  # Cria a variável global para o campo de email
