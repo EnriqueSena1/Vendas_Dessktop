@@ -6,6 +6,23 @@ from Banco import Database  # Importa a classe Database do arquivo de backend
 import tkinter as tk;
 db = Database()
 
+def configurar_placeholder(entry, placeholder):
+    def on_click(event):
+        if entry.get() == placeholder:
+            entry.delete(0, tk.END)
+            entry.config(fg='black')
+
+    def on_focusout(event):
+        if entry.get() == "":
+            entry.insert(0,placeholder)
+            entry.config(fg='gray')
+
+    entry.insert(0, placeholder)
+    entry.config(fg='gray')
+    entry.bind("<FocusIn>", on_click)
+    entry.bind("<FocusOut>", on_focusout)
+
+
 class Application:
     def __init__(self, master=None):
         self.fontePadrao = ("Arial", "10")
@@ -85,9 +102,9 @@ def abrir_login():
     for widget in root.winfo_children():  # Limpa todos os widgets da tela atual
         widget.destroy()
 
-    bg_image = Image.open("img.png.jpg")
+    bg_image = Image.open("img.jpg")
 
-    bg_image = bg_image.resize((root.winfo_screnwidth(), root. winfo_screenheight())) 
+    bg_image = bg_image.resize((root.winfo_screenwidth(), root. winfo_screenheight())) 
 
     bg_photo = ImageTk.PhotoImage(bg_image)
 
@@ -97,11 +114,18 @@ def abrir_login():
 
     bg_label.place(relx=0, rely=0, relwidth=1, relheight=1)
 
-    tk.Label(root, text="Email:").pack(pady=5)  # Label para o campo de email
-    global email_entry  # Cria a variável global para o campo de email
-    email_entry = tk.Entry(root)  # Cria o campo de entrada de email
-    email_entry.pack()
+    login_frame = tk.Frame(root, bg="black", bd=2, relief=tk.RIDGE)
 
+    login_frame.place(relx=0.5, rely=0.5, anchor="center", width=400, height=300)
+
+    tk.Label(login_frame, text="Login", font=("Arial", 20, "bold"),bg="black", fg="white").pack(pady=10)
+
+    tk.Label(login_frame, text="Email:", font=("Arial", 12), bg="black", fg="white", anchor="w").pack(fill='x', padx=34, pady=5)
+    global email_entry
+    email_entry = tk.Entry(login_frame, width=35, font=("Arial",12))
+    email_entry.pack(pady=5)
+    configurar_placeholder(email_entry,"Digite seu email")
+    
     tk.Label(root, text="Senha:").pack(pady=5)  # Label para o campo de senha
     global senha_entry  # Cria a variável global para o campo de senha
     senha_entry = tk.Entry(root, show="*")  # Cria o campo de entrada de senha (oculta os caracteres)
